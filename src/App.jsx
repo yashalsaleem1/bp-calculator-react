@@ -1,20 +1,31 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        BP Category Calculator
-      </section>
-      <section id="spacer"></section>
-    </>
-  )
+    <div className="container">
+      <h1>BP Category Calculator</h1>
+
+      <div>
+        <label>Systolic Pressure</label>
+        <br />
+        <input type="number" />
+      </div>
+
+      <br />
+
+      <div>
+        <label>Diastolic Pressure</label>
+        <br />
+        <input type="number" />
+      </div>
+
+      <br />
+
+      <button>Submit</button>
+
+      <h2>Result</h2>
+    </div>
+  );
 }
 
-export default App
+export default App;
