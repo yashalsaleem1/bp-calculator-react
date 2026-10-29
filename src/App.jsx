@@ -6,8 +6,32 @@ function App() {
   const [systolic, setSystolic] = useState("");
   const [diastolic, setDiastolic] = useState("");
   const [result, setResult] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = () => {
+    const sys = Number(systolic);
+    const dia = Number(diastolic);
+
+    if (sys < 70 || sys > 190) {
+      setError("Systolic must be between 70 and 190");
+      setResult("");
+      return;
+    }
+
+    if (dia < 40 || dia > 100) {
+      setError("Diastolic must be between 40 and 100");
+      setResult("");
+      return;
+    }
+
+    if (sys <= dia) {
+      setError("Systolic must be greater than Diastolic");
+      setResult("");
+      return;
+    }
+
+    setError("");
+
     const category = calculateCategory(systolic, diastolic);
     setResult(category);
   };
@@ -41,6 +65,7 @@ function App() {
       <br />
 
       <button onClick={handleSubmit}>Submit</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <h2>Result</h2>
       <p>{result}</p>
     </div>
