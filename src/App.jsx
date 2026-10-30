@@ -3,8 +3,8 @@ import "./App.css";
 import { calculateCategory } from "./services/bloodPressureService";
 
 function App() {
-  const [systolic, setSystolic] = useState("");
-  const [diastolic, setDiastolic] = useState("");
+  const [systolic, setSystolic] = useState("100");
+  const [diastolic, setDiastolic] = useState("60");
   const [result, setResult] = useState("");
   const [error, setError] = useState("");
 
