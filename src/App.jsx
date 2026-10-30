@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { calculateCategory } from "./services/bloodPressureService";
+import { validateBloodPressure } from "./services/validationService";
 
 function App() {
   const [systolic, setSystolic] = useState("100");
@@ -9,23 +10,10 @@ function App() {
   const [error, setError] = useState("");
 
   const handleSubmit = () => {
-    const sys = Number(systolic);
-    const dia = Number(diastolic);
+    const validationError = validateBloodPressure(systolic, diastolic);
 
-    if (sys < 70 || sys > 190) {
-      setError("Systolic must be between 70 and 190");
-      setResult("");
-      return;
-    }
-
-    if (dia < 40 || dia > 100) {
-      setError("Diastolic must be between 40 and 100");
-      setResult("");
-      return;
-    }
-
-    if (sys <= dia) {
-      setError("Systolic must be greater than Diastolic");
+    if (validationError) {
+      setError(validationError);
       setResult("");
       return;
     }
@@ -33,6 +21,7 @@ function App() {
     setError("");
 
     const category = calculateCategory(systolic, diastolic);
+
     setResult(category);
   };
 
