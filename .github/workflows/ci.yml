@@ -26,3 +26,12 @@ jobs:
 
       - name: Run ESLint
         run: npm run lint
+
+      - name: Run Unit Tests
+        run: npm test -- --run
+
+      - name: Run Coverage
+        run: npm run coverage
+
+      - name: Run BDD Tests
+        run: npm run bdd
